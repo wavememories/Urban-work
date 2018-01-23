@@ -8,13 +8,15 @@ Created on Fri Jan 12 14:07:06 2018
 import pandas as pd
 import json
 
-df = pd.read_csv('C:/Users/hiroellis/Desktop/urban-work/Data/citibike-trips/citibiketest.csv')
+data_path='./Data/'
+
+df = pd.read_csv(data_path + '/citibike-trips/citibiketest.csv')
 
 print(df)
 
 from shapely.geometry import Point, shape
 
-with open('C:/Users/hiroellis/Desktop/urban-work/Data/geojson/nycnh.json') as data_file:
+with open(data_path + '/geojson/nycnh.json') as data_file:
     nh_json=json.load(data_file)
     
 def get_location_start(longitude, latitude, nh_json):
