@@ -12,9 +12,14 @@ from flask import Flask
 from flask import render_template
 import json
 
-data_path='.Data/'
+data_path='./Data/'
 
-def get_location_start(longitude, latitude, nh_json):
+# geojson file that outlines the lat long shape of NYC neighborhoods
+with open(data_path + '/geojson/nycnh.json') as data_file: 
+    nh_json=json.load(data_file)
+
+# Function returns citibike trip starting NYC neighborhood
+def get_neighborhood(longitude, latitude, nh_json):
     
     point = Point(longitude, latitude)
     
@@ -22,10 +27,7 @@ def get_location_start(longitude, latitude, nh_json):
         polygon = shape(record['geometry'])
         if polygon.contains(point):
             return record['properties']['neighborhood']
-        return 'other'
-
-with open(data_path + 'geojson/nycnh.json') as data_file: 
-    nh_json=json.load(data_file)
+    return 'other'
 
 app = Flask(__name__)
 
@@ -35,11 +37,12 @@ def index():
 
 @app.route("/data")
 def get_data():
-    df = pd.read_csv('C:/Users/hiroellis/Desktop/urban-work/Data/citibike-trips/citibiketest.csv')
+    df = pd.read_csv(data_path + '/citibike-trips/2013-07_tripdata.csv')
 
-    df['starting neighborhood'] = df.apply(lambda row: get_location_start(row['start station longitude'], row['start station latitude'],nh_json), axis=1)
+    df['starting neighborhood'] = df.apply(lambda row: get_neighborhood(row['start station longitude'], row['start station latitude'],nh_json), axis=1)
+    df['ending neighborhood'] = df.apply(lambda row: get_neighborhood(row['end station longitude'], row['end station latitude'],nh_json), axis=1)
    
-    
+
     return df.to_json(orient='records')
 
 if __name__ == "__main__":
