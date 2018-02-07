@@ -12,7 +12,8 @@ from flask import Flask
 from flask import render_template
 import json
 
-data_path='./Data/'
+# defining relative directory for input data
+data_path='./data/'
 
 # geojson file that outlines the lat long shape of NYC neighborhoods
 with open(data_path + '/geojson/nycnh.json') as data_file: 

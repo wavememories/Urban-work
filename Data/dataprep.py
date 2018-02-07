@@ -12,7 +12,6 @@ data_path =  './Data/'
 
 df = pd.read_csv(data_path + "/citibike-trips/2013-07_tripdata.csv")
 
-
 print(df)
 
 from shapely.geometry import Point, shape
