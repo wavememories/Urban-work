@@ -1,0 +1,67 @@
+/* css for urban work */
+
+.container {
+   display: grid;
+   /*width: 1000px;
+   height: 700px;*/
+   grid-template-columns: 1fr 2fr 4fr 1fr;
+   grid-template-rows: 1fr 10fr 2fr 1fr; 
+   grid-gap: 1rem;
+}
+
+.map {
+    grid-row: 2/3;
+    grid-column: 3/4;
+    border: 1px solid #929292;
+}
+
+.timeline {
+    grid-row: 3/4;
+    grid-column: 3/4;
+}
+
+.blurb {
+    grid-row: 2/4;
+    grid-column: 2/3;
+}
+
+.description {
+    text-align: left;
+    margin: 0px 50px 100px 0;
+}
+
+h1 {
+    font-size: 40;
+    font-family: 'Cabin', sans-serif;
+    font-weight: normal;
+}
+
+p {
+    font-size: 20;
+    font-family:'Open Sans', sans-serif;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+}
+
+body {
+    background-color: #3b404e;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+
+  .item {
+    background-color: #3b404e;
+    background-image: linear-gradient(130deg, #6C52D9 0%, #1EAAFC 85%, #3EDFD7 100%);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    color: #fff;
+    border-radius: 2px;
+    border: 2px solid #fff;
+  }
+  
+
